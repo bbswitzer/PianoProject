@@ -14,9 +14,6 @@ const bool ShiftPWM_balanceLoad = false;
 #include <MIDIUSB.h>
 #include <pitchToFrequency.h>
 #include <pitchToNote.h>
-#include "midi.h"
-#include "serial.h"
-#include "shiftRegister.h"
 
 const bool DEBUG_MODE = false;
 

@@ -10,10 +10,6 @@
 #include <string.h>
 #include <vector>
 #include <bluetooth.h>
-#include "settings.h"
-#include "note.h"
-#include "serial.h"
-#include "sustain.h"
 //#pragma GCC diagnostic pop
 const boolean DEBUG_MODE = false;
 
