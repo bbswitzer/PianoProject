@@ -179,46 +179,45 @@ void Note::scheduleNote(uint8_t velocity)
 				schedule[VELOCITY].    push_back(velocity);
 			}
 		}
-	} else
-		if(instances > 0 /*&& velocity == 0*/) //if note off command and note is not already off
+	} else if(instances > 0 /*&& velocity == 0*/) //if note off command and note is not already off
+	{
+		if(instances > 1) //if this isn't the last instance
 		{
-			if(instances > 1) //if this isn't the last instance
-			{
-				//remove instance and exit
-				instances--;
-			} else //this is the last instance of the note and it should be scheduled
-			{
-				instances = 0;
-				timeSinceActivation == 0;
-				updateInstance(false);
+			//remove instance and exit
+			instances--;
+		} else //this is the last instance of the note and it should be scheduled
+		{
+			instances = 0;
+			timeSinceActivation == 0;
+			updateInstance(false);
 
-				if(msAndDelay - fastDeactivateMs >= schedule[ACTIVATION].back() && msAndDelay - fastDeactivateMs <= schedule[ON].back() && schedule[ACTIVATION].back() > 0) //if it's efficient to use fast deactivation
+			if(msAndDelay - fastDeactivateMs >= schedule[ACTIVATION].back() && msAndDelay - fastDeactivateMs <= schedule[ON].back() && schedule[ACTIVATION].back() > 0) //if it's efficient to use fast deactivation
+			{
+				schedule[ON].          push_back(msAndDelay - fastDeactivateMs);
+				schedule[ON].          erase(----schedule[ON].end());
+				schedule[DEACTIVATION].push_back(msAndDelay - fastDeactivateMs);
+				schedule[OFF].         push_back(msAndDelay);
+			} else if(msAndDelay - deactivateMs >= schedule[ON].back()) //if regular deactivation works
+			{
+				schedule[DEACTIVATION].push_back(msAndDelay - deactivateMs);
+				schedule[OFF].         push_back(msAndDelay);
+			} else //if all else fails the key shouldn't stay stuck on
+			{
+				if(schedule[ACTIVATION].back() > 0)
 				{
-					schedule[ON].          push_back(msAndDelay - fastDeactivateMs);
+					//immediately deactivate the key as soon as it makes sound
+					schedule[ON].          push_back(schedule[ACTIVATION].back());
 					schedule[ON].          erase(----schedule[ON].end());
-					schedule[DEACTIVATION].push_back(msAndDelay - fastDeactivateMs);
-					schedule[OFF].         push_back(msAndDelay);
-				} else if(msAndDelay - deactivateMs >= schedule[ON].back()) //if regular deactivation works
+					schedule[DEACTIVATION].push_back(schedule[ACTIVATION].back());
+					schedule[OFF].         push_back(schedule[ACTIVATION].back() + fastDeactivateMs);
+				} else //this should never happen
 				{
-					schedule[DEACTIVATION].push_back(msAndDelay - deactivateMs);
-					schedule[OFF].         push_back(msAndDelay);
-				} else //if all else fails the key shouldn't stay stuck on
-				{
-					if(schedule[ACTIVATION].back() > 0)
-					{
-						//immediately deactivate the key as soon as it makes sound
-						schedule[ON].          push_back(schedule[ACTIVATION].back());
-						schedule[ON].          erase(----schedule[ON].end());
-						schedule[DEACTIVATION].push_back(schedule[ACTIVATION].back());
-						schedule[OFF].         push_back(schedule[ACTIVATION].back() + fastDeactivateMs);
-					} else //this should never happen
-					{
-						schedule[DEACTIVATION].push_back(msAndDelay);
-						schedule[OFF].         push_back(msAndDelay + deactivateMs);
-					}
+					schedule[DEACTIVATION].push_back(msAndDelay);
+					schedule[OFF].         push_back(msAndDelay + deactivateMs);
 				}
 			}
 		}
+	}
 	if(DEBUG_MODE) sendScheduleToSerial();
 }
 

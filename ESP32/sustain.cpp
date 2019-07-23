@@ -96,29 +96,27 @@ void Sustain::scheduleSustain(boolean state)
 			schedule[ACTIVATION].push_back(msAndDelay - sustainOnMs);
 			schedule[ON].        push_back(msAndDelay);
 			timeSinceActivation = ms;
-		} else
-			if(msAndDelay - sustainOffMs - sustainOnMs >= schedule[ON].back()) //if current scheduling can be modified to still schedule the sustain
-			{
-				schedule[ON].        push_back(msAndDelay - sustainOnMs - sustainOffMs);
-				schedule[ON].        erase(----schedule[ON].end());
-				schedule[OFF].       push_back(msAndDelay - sustainOnMs);
-				schedule[OFF].       erase(----schedule[OFF].end());
-				schedule[ACTIVATION].push_back(msAndDelay - sustainOnMs);
-				schedule[ON].        push_back(msAndDelay);
-				timeSinceActivation = ms;
-			}
-	} else
-		if(instances > 0) //if sustain off command and sustain is not already off
+		} else if(msAndDelay - sustainOffMs - sustainOnMs >= schedule[ON].back()) //if current scheduling can be modified to still schedule the sustain
 		{
-			instances == 0;
-			if(msAndDelay - sustainOffMs >= schedule[ON].back()) //if sustain can be ideally deactivated
-			{
-				schedule[DEACTIVATION].push_back(msAndDelay - sustainOffMs);
-				schedule[OFF].         push_back(msAndDelay);
-			} else //deactivate sustain anyways so it's not stuck on
-			{
-				schedule[DEACTIVATION].push_back(msAndDelay);
-				schedule[OFF].         push_back(msAndDelay + sustainOffMs);
-			}
+			schedule[ON].        push_back(msAndDelay - sustainOnMs - sustainOffMs);
+			schedule[ON].        erase(----schedule[ON].end());
+			schedule[OFF].       push_back(msAndDelay - sustainOnMs);
+			schedule[OFF].       erase(----schedule[OFF].end());
+			schedule[ACTIVATION].push_back(msAndDelay - sustainOnMs);
+			schedule[ON].        push_back(msAndDelay);
+			timeSinceActivation = ms;
 		}
+	} else if(instances > 0) //if sustain off command and sustain is not already off
+	{
+		instances == 0;
+		if(msAndDelay - sustainOffMs >= schedule[ON].back()) //if sustain can be ideally deactivated
+		{
+			schedule[DEACTIVATION].push_back(msAndDelay - sustainOffMs);
+			schedule[OFF].         push_back(msAndDelay);
+		} else //deactivate sustain anyways so it's not stuck on
+		{
+			schedule[DEACTIVATION].push_back(msAndDelay);
+			schedule[OFF].         push_back(msAndDelay + sustainOffMs);
+		}
+	}
 }
