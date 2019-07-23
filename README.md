@@ -7,7 +7,7 @@ Role of each of the Arduinos:
 
   ESP32:
   
-    - Receive and decode bluetooth message
+    - Receives and decodes bluetooth message
     
     - Schedules notes
     
