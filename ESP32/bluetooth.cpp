@@ -19,14 +19,13 @@ uint8_t serviceUUID128[32] =
 };
 uint8_t rawAdvData[] =
 {
-		0x02, 0x01, 0x06,
-		0x11, 0x07, 0x00, 0xC7, 0xC4, 0x4E, 0xE3, 0x6C, 0x51, 0xA7, 0x33, 0x4B, 0xE8, 0xED, 0x5A, 0x0E, 0xB8, 0x03,
+		0x02, 0x01, 0x06, 0x11, 0x07, 0x00, 0xC7, 0xC4, 0x4E, 0xE3, 0x6C, 0x51, 0xA7, 0x33, 0x4B, 
+		0xE8, 0xED, 0x5A, 0x0E, 0xB8, 0x03,
 };
 uint8_t rawScanRspData[] ={ 0x0c, 0x09, 'P','l','a','y','e','r',' ','P','I','A','N','O' };
 
 
 esp_bt_uuid_t characteristicUUID;
-esp_bt_uuid_t descriptorUUID;
 esp_gatt_perm_t permissions = ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE;
 esp_gatt_char_prop_t property = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE_NR | ESP_GATT_CHAR_PROP_BIT_NOTIFY;
 esp_ble_adv_params_t BLEAdvParams;
@@ -96,11 +95,11 @@ static void gattsEventHandler(esp_gatts_cb_event_t event, esp_gatt_if_t gattsInt
 		esp_ble_gatts_start_service(params->create.service_handle);
 		break;
 
-	case ESP_GATTS_DISCONNECT_EVT:
+	case ESP_GATTS_DISCONNECT_EVT: //advertise again on disconnect
 		esp_ble_gap_start_advertising(&BLEAdvParams);
 		break;
+
 	case ESP_GATTS_CONNECT_EVT: //connection
-	{
 		esp_ble_conn_update_params_t conn_params ={ 0 };
 		memcpy(conn_params.bda, params->connect.remote_bda, sizeof(esp_bd_addr_t));
 		conn_params.latency = 0;
@@ -109,7 +108,7 @@ static void gattsEventHandler(esp_gatts_cb_event_t event, esp_gatt_if_t gattsInt
 		conn_params.timeout = 500;
 		esp_ble_gap_update_conn_params(&conn_params);
 		break;
-	}
+
 	default:
 		break;
 	}

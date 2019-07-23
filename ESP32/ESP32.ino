@@ -14,7 +14,7 @@
 #include "note.h"
 #include "serial.h"
 #include "sustain.h"
-//#pragma GCC diagnostic popv
+//#pragma GCC diagnostic pop
 const boolean DEBUG_MODE = false;
 
 void resetAll()
