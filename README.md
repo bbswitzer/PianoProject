@@ -1,4 +1,4 @@
-# PianoProject
+# Piano Project
 Arduino Code for a DIY Player Piano.
 
 See more information about it here: brandonswitzer.squarespace.com/player-piano
