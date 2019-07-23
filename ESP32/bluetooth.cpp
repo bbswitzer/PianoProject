@@ -107,6 +107,7 @@ static void gattsEventHandler(esp_gatts_cb_event_t event, esp_gatt_if_t gattsInt
 		conn_params.min_int = 0x20;
 		conn_params.timeout = 500;
 		esp_ble_gap_update_conn_params(&conn_params);
+		if(DEBUG_MODE) flashLED();
 		break;
 
 	default:

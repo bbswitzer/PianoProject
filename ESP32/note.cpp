@@ -130,35 +130,33 @@ void Note::scheduleNote(uint8_t velocity)
 				schedule[VELOCITY].  push_back(velocity);
 				timeSinceActivation == ms;
 				updateInstance(true);
-			} else
-				if(msAndDelay - deactivateMs - velocityMs - startupMs >= schedule[ON].back()) //if current scheduling can be modified to still schedule the new note
-				{
-					schedule[DEACTIVATION].push_back(msAndDelay - velocityMs - startupMs - deactivateMs);
-					schedule[DEACTIVATION].erase(----schedule[DEACTIVATION].end());
-					schedule[OFF].         push_back(msAndDelay - velocityMs - startupMs);
-					schedule[OFF].         erase(----schedule[OFF].end());
-					schedule[STARTUP].     push_back(msAndDelay - velocityMs - startupMs);
-					schedule[ACTIVATION].  push_back(msAndDelay - velocityMs);
-					schedule[ON].          push_back(msAndDelay);
-					schedule[VELOCITY].    push_back(velocity);
-					timeSinceActivation == ms;
-					updateInstance(true);
-				} else
-					if(msAndDelay - fastDeactivateMs - velocityMs - startupMs >= schedule[ACTIVATION].back()) //if current scheduling can be modified with fast deactivation to schedule the new note
-					{
-						schedule[ON].          push_back(msAndDelay - velocityMs - startupMs - fastDeactivateMs);
-						schedule[ON].          erase(----schedule[ON].end());
-						schedule[DEACTIVATION].push_back(msAndDelay - velocityMs - startupMs - fastDeactivateMs);
-						schedule[DEACTIVATION].erase(----schedule[DEACTIVATION].end());
-						schedule[OFF].         push_back(msAndDelay - velocityMs - startupMs);
-						schedule[OFF].         erase(----schedule[OFF].end());
-						schedule[STARTUP].     push_back(msAndDelay - velocityMs - startupMs);
-						schedule[ACTIVATION].  push_back(msAndDelay - velocityMs);
-						schedule[ON].          push_back(msAndDelay);
-						schedule[VELOCITY].    push_back(velocity);
-						timeSinceActivation == ms;
-						updateInstance(true);
-					}
+			} else if(msAndDelay - deactivateMs - velocityMs - startupMs >= schedule[ON].back()) //if current scheduling can be modified to still schedule the new note
+			{
+				schedule[DEACTIVATION].push_back(msAndDelay - velocityMs - startupMs - deactivateMs);
+				schedule[DEACTIVATION].erase(----schedule[DEACTIVATION].end());
+				schedule[OFF].         push_back(msAndDelay - velocityMs - startupMs);
+				schedule[OFF].         erase(----schedule[OFF].end());
+				schedule[STARTUP].     push_back(msAndDelay - velocityMs - startupMs);
+				schedule[ACTIVATION].  push_back(msAndDelay - velocityMs);
+				schedule[ON].          push_back(msAndDelay);
+				schedule[VELOCITY].    push_back(velocity);
+				timeSinceActivation == ms;
+				updateInstance(true);
+			} else if(msAndDelay - fastDeactivateMs - velocityMs - startupMs >= schedule[ACTIVATION].back()) //if current scheduling can be modified with fast deactivation to schedule the new note
+			{
+				schedule[ON].          push_back(msAndDelay - velocityMs - startupMs - fastDeactivateMs);
+				schedule[ON].          erase(----schedule[ON].end());
+				schedule[DEACTIVATION].push_back(msAndDelay - velocityMs - startupMs - fastDeactivateMs);
+				schedule[DEACTIVATION].erase(----schedule[DEACTIVATION].end());
+				schedule[OFF].         push_back(msAndDelay - velocityMs - startupMs);
+				schedule[OFF].         erase(----schedule[OFF].end());
+				schedule[STARTUP].     push_back(msAndDelay - velocityMs - startupMs);
+				schedule[ACTIVATION].  push_back(msAndDelay - velocityMs);
+				schedule[ON].          push_back(msAndDelay);
+				schedule[VELOCITY].    push_back(velocity);
+				timeSinceActivation == ms;
+				updateInstance(true);
+			}
 		} else //note is scheduled to activate and not deactivate
 		{
 			if(msAndDelay - deactivateMs - velocityMs - startupMs >= schedule[ON].back()) //if current scheduling can be modified to still schedule the new note
@@ -169,18 +167,17 @@ void Note::scheduleNote(uint8_t velocity)
 				schedule[ACTIVATION].  push_back(msAndDelay - velocityMs);
 				schedule[ON].          push_back(msAndDelay);
 				schedule[VELOCITY].    push_back(velocity);
-			} else
-				if(msAndDelay - fastDeactivateMs - velocityMs - startupMs >= schedule[ACTIVATION].back() && schedule[ACTIVATION].back() > 0) //if current scheduling can be modified with fast deactivation to still schedule the new note
-				{
-					schedule[ON].          push_back(msAndDelay - velocityMs - startupMs - fastDeactivateMs);
-					schedule[ON].          erase(----schedule[ON].end());
-					schedule[DEACTIVATION].push_back(msAndDelay - velocityMs - startupMs - fastDeactivateMs);
-					schedule[OFF].         push_back(msAndDelay - velocityMs - startupMs);
-					schedule[STARTUP].     push_back(msAndDelay - velocityMs - startupMs);
-					schedule[ACTIVATION].  push_back(msAndDelay - velocityMs);
-					schedule[ON].          push_back(msAndDelay);
-					schedule[VELOCITY].    push_back(velocity);
-				}
+			} else if(msAndDelay - fastDeactivateMs - velocityMs - startupMs >= schedule[ACTIVATION].back() && schedule[ACTIVATION].back() > 0) //if current scheduling can be modified with fast deactivation to still schedule the new note
+			{
+				schedule[ON].          push_back(msAndDelay - velocityMs - startupMs - fastDeactivateMs);
+				schedule[ON].          erase(----schedule[ON].end());
+				schedule[DEACTIVATION].push_back(msAndDelay - velocityMs - startupMs - fastDeactivateMs);
+				schedule[OFF].         push_back(msAndDelay - velocityMs - startupMs);
+				schedule[STARTUP].     push_back(msAndDelay - velocityMs - startupMs);
+				schedule[ACTIVATION].  push_back(msAndDelay - velocityMs);
+				schedule[ON].          push_back(msAndDelay);
+				schedule[VELOCITY].    push_back(velocity);
+			}
 		}
 	} else
 		if(instances > 0 /*&& velocity == 0*/) //if note off command and note is not already off
@@ -201,26 +198,25 @@ void Note::scheduleNote(uint8_t velocity)
 					schedule[ON].          erase(----schedule[ON].end());
 					schedule[DEACTIVATION].push_back(msAndDelay - fastDeactivateMs);
 					schedule[OFF].         push_back(msAndDelay);
-				} else
-					if(msAndDelay - deactivateMs >= schedule[ON].back()) //if regular deactivation works
+				} else if(msAndDelay - deactivateMs >= schedule[ON].back()) //if regular deactivation works
+				{
+					schedule[DEACTIVATION].push_back(msAndDelay - deactivateMs);
+					schedule[OFF].         push_back(msAndDelay);
+				} else //if all else fails the key shouldn't stay stuck on
+				{
+					if(schedule[ACTIVATION].back() > 0)
 					{
-						schedule[DEACTIVATION].push_back(msAndDelay - deactivateMs);
-						schedule[OFF].         push_back(msAndDelay);
-					} else //if all else fails the key shouldn't stay stuck on
+						//immediately deactivate the key as soon as it makes sound
+						schedule[ON].          push_back(schedule[ACTIVATION].back());
+						schedule[ON].          erase(----schedule[ON].end());
+						schedule[DEACTIVATION].push_back(schedule[ACTIVATION].back());
+						schedule[OFF].         push_back(schedule[ACTIVATION].back() + fastDeactivateMs);
+					} else //this should never happen
 					{
-						if(schedule[ACTIVATION].back() > 0)
-						{
-							//immediately deactivate the key as soon as it makes sound
-							schedule[ON].          push_back(schedule[ACTIVATION].back());
-							schedule[ON].          erase(----schedule[ON].end());
-							schedule[DEACTIVATION].push_back(schedule[ACTIVATION].back());
-							schedule[OFF].         push_back(schedule[ACTIVATION].back() + fastDeactivateMs);
-						} else //this should never happen
-						{
-							schedule[DEACTIVATION].push_back(msAndDelay);
-							schedule[OFF].         push_back(msAndDelay + deactivateMs);
-						}
+						schedule[DEACTIVATION].push_back(msAndDelay);
+						schedule[OFF].         push_back(msAndDelay + deactivateMs);
 					}
+				}
 			}
 		}
 	if(DEBUG_MODE) sendScheduleToSerial();
