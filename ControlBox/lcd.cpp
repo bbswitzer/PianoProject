@@ -23,7 +23,8 @@ const String MENU_NAMES[] ={
 };
 
 MenuStates       menuState = MenuStates::WELCOME;
-int              currentMenu = -1; //initialize current menu as invalid
+//initialize current menu as invalid
+int              currentMenu = -1; 
 const int        NUM_OF_MENUS         = sizeof(MENU_NAMES) / sizeof(MENU_NAMES[0]);
 const int        SETTING_MENU_TIMEOUT = 20000;
 extern const int SPECIAL_MENU_TIMEOUT = 3000;
@@ -57,7 +58,8 @@ void updateDisplay()
 		lcd.setCursor(0, 1);
 		//see if the current menu is true or false or just a number
 		if(currentMenu != static_cast<int>(SettingID::SCHEDULE_NOTES) &&
-		   currentMenu != static_cast<int>(SettingID::HANDLE_NOTES)) //if current menu is not a boolean menu
+      //if current menu is not a boolean menu
+		   currentMenu != static_cast<int>(SettingID::HANDLE_NOTES)) 
 			lcd.print(EEPROM.read(currentMenu));
 		else
 		{
@@ -91,7 +93,8 @@ void checkSchedule()
 	if(ms >= lastPressedOverall + SETTING_MENU_TIMEOUT && lastPressedOverall > 0)
 	{
 		lastPressedOverall = 0;
-		if(menuState == MenuStates::SETTINGS) //if another screen isn't scheduled
+    //if another screen isn't scheduled
+		if(menuState == MenuStates::SETTINGS)
 		{
 			menuState = MenuStates::WELCOME;
 			updateDisplay();
@@ -100,7 +103,8 @@ void checkSchedule()
 	if(ms >= exitScreen && exitScreen > 0)
 	{
 		exitScreen = 0;
-		if(lastPressedOverall == 0) //if setting menu is timed out
+    //if setting menu is timed out
+		if(lastPressedOverall == 0) 
 			menuState = MenuStates::WELCOME;
 		else
 			menuState = MenuStates::SETTINGS;
