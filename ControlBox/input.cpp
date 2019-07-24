@@ -51,10 +51,14 @@ void checkForInput()
 		const int ANALOG_CHANGE_RATE = 5;
 		const int ANALOG_WITHIN_RANGE = 15;
 		const int ANALOG_CHANGE_TIME = BUTTON_COOLDOWN * 2;
-		int analogValue = analogRead(VOLUME_PIN) / 20; //conform analog value from 0-200
-		if((analogValue >= (lastAnalog + ANALOG_CHANGE_RATE) || analogValue <= (lastAnalog - ANALOG_CHANGE_RATE)) && //if volume has changed enough
-			(analogValue < (lastAnalog + ANALOG_WITHIN_RANGE) && analogValue >(lastAnalog - ANALOG_WITHIN_RANGE)) && //if volume hasn't changed too much for it to be a glitch
-			lastPressedOverall + ANALOG_CHANGE_TIME <= ms)                        //if another button hasn't been pressed within a certain period for it to affect the reading
+    //conform analog value from 0-200
+		int analogValue = analogRead(VOLUME_PIN) / 20; 
+    //if volume has changed enough
+		if((analogValue >= (lastAnalog + ANALOG_CHANGE_RATE) || analogValue <= (lastAnalog - ANALOG_CHANGE_RATE)) && 
+      //if volume hasn't changed too much for it to be a glitch
+			(analogValue < (lastAnalog + ANALOG_WITHIN_RANGE) && analogValue >(lastAnalog - ANALOG_WITHIN_RANGE)) && 
+      //if another button hasn't been pressed within a certain period for it to affect the reading
+			lastPressedOverall + ANALOG_CHANGE_TIME <= ms)
 		{
 			//conform analog to certain values if they are within range
 			if(analogValue <= 105 && analogValue >= 95)
@@ -64,7 +68,8 @@ void checkForInput()
 			else if(analogValue < 5)
 				analogValue = 0;
 			lastAnalog = analogValue;
-			handleInput(VOLUME_PIN); //implied that lastAnalog has also been changed
+      //implied that lastAnalog has also been changed
+			handleInput(VOLUME_PIN);
 		}
 	}
 }
@@ -75,7 +80,8 @@ void handleInput(int inputPin)
 	switch(inputPin)
 	{
 	case UP_PIN:
-		if(menuState == MenuStates::SETTINGS) //prevent settings from changing while not showing
+    //prevent settings from changing while not showing
+		if(menuState == MenuStates::SETTINGS) 
 		{
 			lastPressed.up = ms;
 			lastPressedOverall = ms;
@@ -85,7 +91,8 @@ void handleInput(int inputPin)
 		}
 		break;
 	case DOWN_PIN:
-		if(menuState == MenuStates::SETTINGS) //prevent settings from changing while not showing
+    //prevent settings from changing while not showing
+		if(menuState == MenuStates::SETTINGS) 
 		{
 			lastPressed.down = ms;
 			lastPressedOverall = ms;
