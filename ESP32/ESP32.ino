@@ -1,17 +1,18 @@
-//#pragma GCC diagnostic push
-//#pragma GCC diagnostic warning "-fpermissive"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic warning "-fpermissive"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <vector>
 #include "sustain.h"
 #include "settings.h"
 #include "serial.h"
 #include "note.h"
 #include "midi.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <vector>
-#include <bluetooth.h>
-//#pragma GCC diagnostic pop
-const boolean DEBUG_MODE = false;
+#include "bluetooth.h"
+#include "main.h"
+#pragma GCC diagnostic pop
+const bool DEBUG_MODE = false;
 
 void resetAll()
 {

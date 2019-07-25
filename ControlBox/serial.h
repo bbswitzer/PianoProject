@@ -1,6 +1,8 @@
 #ifndef SERIAL_H
 #define SERIAL_H
 
+#include <Arduino.h>
+
 namespace SerialConstants
 {
 	extern const uint8_t NOTE_HEADER;

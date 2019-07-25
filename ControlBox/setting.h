@@ -1,6 +1,8 @@
 #ifndef SETTING_H
 #define SETTING_H
 
+#include <Arduino.h>
+
 enum class SettingID //same order as menus
 {
 	HANDLE_NOTES,

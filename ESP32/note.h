@@ -1,6 +1,10 @@
 #ifndef NOTE_H
 #define NOTE_H
 
+#include <vector>
+#include <Arduino.h>
+#include "settings.h"
+
 class Note
 {
 private:
@@ -27,7 +31,7 @@ private:
 
 	void scheduleNote(uint8_t velocity);
 	void calculateVolume(uint8_t& volume);
-	void updateInstance(boolean state);
+	void updateInstance(bool state);
 	void sendScheduleToSerial();
 	bool canBeScheduled();
 public:

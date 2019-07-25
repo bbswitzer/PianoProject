@@ -1,4 +1,14 @@
+//Latchpin: Pin 10 goes to second register input
+//Datapin:  Pin 16 goes to first register input
+//Clockpin: Pin 15 goes to third register input
+const int ShiftPWM_latchPin=18; //values assigned before includes
+const bool ShiftPWM_invertOutputs = false;
+const bool ShiftPWM_balanceLoad = false;
+#include <ShiftPWM.h>
+#include <CShiftPWM.h>
 #include "shiftRegister.h"
+
+void conformVelocity(uint8_t& velocity);
 
 extern uint8_t pwmPercent = 45;
 const char     MAX_PWM = 235;

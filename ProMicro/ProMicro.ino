@@ -1,21 +1,9 @@
-//Latchpin: Pin 10 goes to second register input
-//Datapin:  Pin 16 goes to first register input
-//Clockpin: Pin 15 goes to third register input
-const int ShiftPWM_latchPin=18; //values assigned before includes
-const bool ShiftPWM_invertOutputs = false;
-const bool ShiftPWM_balanceLoad = false;
+#include <MIDIUSB.h>
 #include "shiftRegister.h"
 #include "serial.h"
 #include "midi.h"
-#include <pins_arduino_compile_time.h>
-#include <CShiftPWM.h>
-#include <ShiftPWM.h>
-#include <frequencyToNote.h>
-#include <MIDIUSB.h>
-#include <pitchToFrequency.h>
-#include <pitchToNote.h>
 
-const bool DEBUG_MODE = false;
+extern const bool DEBUG_MODE = false;
 
 void setup()
 {

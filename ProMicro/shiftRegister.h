@@ -1,6 +1,8 @@
 #ifndef SHIFT_REGISTER_H
 #define SHIFT_REGISTER_H
 
+#include <Arduino.h>
+
 extern uint8_t pwmPercent;
 
 void intitializeRegisters();

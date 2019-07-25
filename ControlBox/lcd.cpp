@@ -1,6 +1,10 @@
+#include <LiquidCrystal_I2C.h>
+#include <EEPROM.h>
 #include "lcd.h"
 #include "input.h"
 #include "setting.h"
+
+extern LiquidCrystal_I2C lcd;
 
 const String MENU_NAMES[] ={
   "Handle Notes",
@@ -57,7 +61,7 @@ void updateDisplay()
 		lcd.setCursor(0, 1);
 		//see if the current menu is true or false or just a number
 		if(currentMenu != static_cast<int>(SettingID::SCHEDULE_NOTES) &&
-		   currentMenu != static_cast<int>(SettingID::HANDLE_NOTES)) //if current menu is not a boolean menu
+		   currentMenu != static_cast<int>(SettingID::HANDLE_NOTES)) //if current menu is not a bool menu
 			lcd.print(EEPROM.read(currentMenu));
 		else
 		{

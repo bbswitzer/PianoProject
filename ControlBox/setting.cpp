@@ -1,3 +1,5 @@
+#include <EEPROM.h>
+#include "setting.h"
 #include "lcd.h"
 #include "serial.h"
 #include "input.h"
@@ -5,10 +7,10 @@
 void changeSetting(int changeBy)
 {
 	if(currentMenu != static_cast<int>(SettingID::SCHEDULE_NOTES) &&
-	   currentMenu != static_cast<int>(SettingID::HANDLE_NOTES)) //if current menu is not a boolean menu
+	   currentMenu != static_cast<int>(SettingID::HANDLE_NOTES)) //if current menu is not a bool menu
 		EEPROM.write(currentMenu, EEPROM.read(currentMenu) + changeBy);
 	else
-		EEPROM.write(currentMenu, !(static_cast<boolean>(EEPROM.read(currentMenu))));
+		EEPROM.write(currentMenu, !(static_cast<bool>(EEPROM.read(currentMenu))));
 }
 
 void sendAllSettings()

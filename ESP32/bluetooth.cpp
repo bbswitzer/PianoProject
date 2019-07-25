@@ -1,9 +1,11 @@
-#include "bluetooth.h"
-#include "midi.h"
 #include <esp_gatt_defs.h>
 #include <esp_gap_ble_api.h>
 #include <esp_bt_main.h>
 #include <esp_gatts_api.h>
+#include <string.h>
+#include "bluetooth.h"
+#include "midi.h"
+#include "main.h"
 
 uint8_t attrStr[] ={ 0x00 }; //value range of a characteristic
 esp_attr_value_t gattsAttrVal =
@@ -85,7 +87,7 @@ static void gattsEventHandler(esp_gatts_cb_event_t event, esp_gatt_if_t gattsInt
 		break;
 
 	case ESP_GATTS_WRITE_EVT: //when main device sends data
-		extern boolean acceptMidi;
+		extern bool acceptMidi;
 		if(acceptMidi)
 			decodeBluetooth(params->write.len, params->write.value);
 		break;
@@ -100,14 +102,14 @@ static void gattsEventHandler(esp_gatts_cb_event_t event, esp_gatt_if_t gattsInt
 		break;
 
 	case ESP_GATTS_CONNECT_EVT: //connection
-		esp_ble_conn_update_params_t conn_params ={ 0 };
+		esp_ble_conn_update_params_t conn_params;
 		memcpy(conn_params.bda, params->connect.remote_bda, sizeof(esp_bd_addr_t));
 		conn_params.latency = 0;
 		conn_params.max_int = 0x30;
 		conn_params.min_int = 0x20;
 		conn_params.timeout = 500;
 		esp_ble_gap_update_conn_params(&conn_params);
-		if(DEBUG_MODE) flashLED();
+		//if(DEBUG_MODE) flashLED();
 		break;
 
 	default:

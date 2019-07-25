@@ -2,6 +2,9 @@
 #include "note.h"
 #include "sustain.h"
 #include "settings.h"
+#include "main.h"
+
+void sendMidiToProMicro(byte note, byte velocity);
 
 //serial is always handled in bytes, not uint8_t because serial is dumb
 extern const byte NOTE_HEADER    = 201;

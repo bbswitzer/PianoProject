@@ -5,14 +5,14 @@
 
 //settings within the program
 int           fullDelay      = 0;
-boolean       acceptMidi     = false;
+bool       acceptMidi     = false;
 unsigned long nextReset      = 0; //first reset will happen immediately
 
 //settings changed by the control box
 namespace Setting
 {
-	boolean handleNotes      = true;
-	boolean scheduleNotes    = true;
+	bool handleNotes      = true;
+	bool scheduleNotes    = true;
 	int     minNoteVelocity  = 4;
 	int     minStartupMs     = 18;
 	int     maxStartupMs     = 18;

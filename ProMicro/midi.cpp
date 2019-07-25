@@ -1,5 +1,11 @@
+#include <MIDIUSB.h>
 #include "midi.h"
 #include "shiftRegister.h"
+#include "serial.h"
+
+void decodeMidi(uint8_t header, uint8_t byte1, uint8_t byte2, uint8_t byte3);
+
+extern const bool DEBUG_MODE;
 
 void checkForMidiUSB()
 {

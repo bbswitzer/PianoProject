@@ -1,7 +1,6 @@
 #include "note.h"
-#include "note.h"
-#include "settings.h"
 #include "serial.h"
+#include "main.h"
 
 Note notes[88];
 
@@ -233,7 +232,7 @@ void Note::calculateVolume(uint8_t& velocity)
 	}
 }
 
-void Note::updateInstance(boolean state)
+void Note::updateInstance(bool state)
 {
 	if(id < 44)
 	{

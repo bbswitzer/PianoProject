@@ -1,6 +1,8 @@
 #ifndef LCD_H
 #define LCD_H
 
+#include <Arduino.h>
+
 enum class MenuStates
 {
 	WELCOME,

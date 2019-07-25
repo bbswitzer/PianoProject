@@ -1,6 +1,7 @@
 #include "serial.h"
 #include "shiftRegister.h"
 
+extern const bool DEBUG_MODE;
 extern const uint8_t SUSTAIN_HEADER = 202;
 
 void checkForSerial()

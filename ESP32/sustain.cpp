@@ -82,7 +82,7 @@ void Sustain::resetSchedule()
 	ledcWrite(0, 0);
 }
 
-void Sustain::scheduleSustain(boolean state)
+void Sustain::scheduleSustain(bool state)
 {
 	unsigned long ms = millis();
 	unsigned long msAndDelay = ms + fullDelay;

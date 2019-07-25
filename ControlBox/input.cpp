@@ -1,7 +1,10 @@
+#include <EEPROM.h>
 #include "input.h"
 #include "lcd.h"
 #include "serial.h"
 #include "setting.h"
+
+void handleInput(int inputPin);
 
 extern const int UP_PIN         = 4;
 extern const int DOWN_PIN       = 6;

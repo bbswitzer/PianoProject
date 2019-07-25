@@ -1,6 +1,9 @@
 #ifndef SUSTAIN_H
 #define SUSTAIN_H
 
+#include <Arduino.h>
+#include <vector>
+
 class Sustain
 {
 private:
@@ -16,7 +19,7 @@ private:
 	int instances = 0;
 	unsigned long timeSinceActivation = 0;
 
-	void scheduleSustain(boolean state);
+	void scheduleSustain(bool state);
 public:
 	Sustain();
 	void prepareToSchedule(uint8_t velocity);

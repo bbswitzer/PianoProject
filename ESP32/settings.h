@@ -1,6 +1,8 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
+#include <Arduino.h>
+
 namespace SettingID //so a using statement can be used in the switch statement
 {
 	enum SettingID
@@ -26,13 +28,13 @@ namespace SettingID //so a using statement can be used in the switch statement
 }
 
 extern int           fullDelay;
-extern boolean       acceptMidi;
+extern bool       acceptMidi;
 extern unsigned long nextReset;
 
 namespace Setting
 {
-	extern boolean handleNotes;
-	extern boolean scheduleNotes;
+	extern bool handleNotes;
+	extern bool scheduleNotes;
 	extern int     minNoteVelocity;
 	extern int     minSolenoidPWM;
 	extern int     minStartupMs;

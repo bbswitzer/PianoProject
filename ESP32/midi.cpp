@@ -2,6 +2,9 @@
 #include "note.h"
 #include "sustain.h"
 #include "settings.h"
+#include "main.h"
+
+void sendBluetoothToSerial(int lengthM, uint8_t* message);
 
 void decodeBluetooth(int lengthM, uint8_t* message)
 {
