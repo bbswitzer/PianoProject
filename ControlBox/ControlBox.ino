@@ -10,13 +10,14 @@
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);//set the LCD address to 0x27 for a 16 chars and 2 line display
 
-const bool DEBUG_MODE = false;
+extern const bool DEBUG_MODE = false;
 
 void setup()
 {
 	initializeInputs();
 	initializeLCD();
 	printHomeScreen();
+	if(DEBUG_MODE) Serial.begin(38400);
 	Serial1.begin(38400);
 
 	//send all data to ESP32 for initializationv

@@ -38,6 +38,7 @@ void checkForInput()
 {
 	unsigned long ms = millis();
 	const int BUTTON_COOLDOWN = 500;
+	extern const bool DEBUG_MODE;
 
 	if(digitalRead(UP_PIN) == HIGH && lastPressed.up + BUTTON_COOLDOWN <= ms)
 		handleInput(UP_PIN);
@@ -55,6 +56,7 @@ void checkForInput()
 		const int ANALOG_WITHIN_RANGE = 15;
 		const int ANALOG_CHANGE_TIME = BUTTON_COOLDOWN * 2;
 		int analogValue = analogRead(VOLUME_PIN) / 20; //conform analog value from 0-200
+		if(DEBUG_MODE) Serial.println(analogValue);
 		if((analogValue >= (lastAnalog + ANALOG_CHANGE_RATE) || analogValue <= (lastAnalog - ANALOG_CHANGE_RATE)) && //if volume has changed enough
 			(analogValue < (lastAnalog + ANALOG_WITHIN_RANGE) && analogValue >(lastAnalog - ANALOG_WITHIN_RANGE)) && //if volume hasn't changed too much for it to be a glitch
 			lastPressedOverall + ANALOG_CHANGE_TIME <= ms)                        //if another button hasn't been pressed within a certain period for it to affect the reading
