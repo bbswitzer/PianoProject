@@ -16,7 +16,7 @@ const bool DEBUG_MODE = false;
 
 void resetAll()
 {
-	acceptMidi = false; //turn midi off during reset to prevent errors
+	acceptMidi = false; //turn midi off during reset to prevent errorsf
 	for(int noteIndex = 0; noteIndex < 88; noteIndex++)
 	{
 		notes[noteIndex].resetSchedule();
