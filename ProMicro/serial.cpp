@@ -10,11 +10,11 @@ void checkForSerial()
 	const byte SETTING_HEADER = 203;
 	while(Serial1.available() > 2)
 	{
-		uint8_t header = Serial1.read();
+		int header = Serial1.read();
 		if(header == NOTE_HEADER)
 		{
-			uint8_t note     = Serial1.read();
-			uint8_t velocity = Serial1.read();
+			int note     = Serial1.read();
+			int velocity = Serial1.read();
 			activateNote(note, velocity);
 			if(DEBUG_MODE)
 			{
