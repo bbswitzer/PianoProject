@@ -18,11 +18,11 @@ void checkForSerial()
 {
 	while(Serial.available() > 2)
 	{
-		byte header = Serial.read();
+		uint8_t header = Serial.read();
 		if(header >= NOTE_HEADER && header <= VOLUME_HEADER) //make sure the first byte is a header
 		{
-			byte byte1 = Serial.read(); //only declare these if the first byte is a header
-			byte byte2 = Serial.read(); //otherwise the program will keep looping looking for one
+			uint8_t byte1 = Serial.read(); //only declare these if the first byte is a header
+			uint8_t byte2 = Serial.read(); //otherwise the program will keep looping looking for one
 			switch(header)
 			{
 			case NOTE_HEADER:

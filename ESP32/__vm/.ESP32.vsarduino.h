@@ -6,8 +6,7 @@
 			All non-arduino files created by visual micro and all visual studio project or solution files can be freely deleted and are not required to compile a sketch (do not delete your own code!).
 			Note: debugger breakpoints are stored in '.sln' or '.asln' files, knowledge of last uploaded breakpoints is stored in the upload.vmps.xml file. Both files are required to continue a previous debug session without needing to compile and upload again
 	
-	Hardware: Node32s, Platform=esp32, Package=esp32
-*/
+	Hardware: Node32s, Platform=esp32, Package=espressif
 
 #if defined(_VMICRO_INTELLISENSE)
 
@@ -18,7 +17,7 @@
 #define ESP_PLATFORM
 #define HAVE_CONFIG_H
 #define F_CPU 240000000L
-#define ARDUINO 10807
+#define ARDUINO 10809
 #define ARDUINO_Node32s
 #define ARDUINO_ARCH_ESP32
 #define ESP32
@@ -86,7 +85,6 @@ typedef long pthread_once_t;
 typedef long pthread_mutex_t;
 typedef long pthread_mutex_t;
 typedef long pthread_cond_t;
-
 
 
 #include "arduino.h"
