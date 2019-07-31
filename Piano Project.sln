@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ESP32", "ESP32\ESP32.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProMicro", "ProMicro\ProMicro.vcxproj", "{62539448-1BC7-47A2-A21E-53DE25ACD53F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ControlBox", "ControlBox\ControlBox.vcxproj", "{F084E901-4464-411A-9291-371A63C4AA95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.ActiveCfg = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.Build.0 = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.ActiveCfg = Release|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.Build.0 = Release|Win32
+		{62539448-1BC7-47A2-A21E-53DE25ACD53F}.Debug|x86.ActiveCfg = Debug|Win32
+		{62539448-1BC7-47A2-A21E-53DE25ACD53F}.Debug|x86.Build.0 = Debug|Win32
+		{62539448-1BC7-47A2-A21E-53DE25ACD53F}.Release|x86.ActiveCfg = Release|Win32
+		{62539448-1BC7-47A2-A21E-53DE25ACD53F}.Release|x86.Build.0 = Release|Win32
+		{F084E901-4464-411A-9291-371A63C4AA95}.Debug|x86.ActiveCfg = Debug|Win32
+		{F084E901-4464-411A-9291-371A63C4AA95}.Debug|x86.Build.0 = Debug|Win32
+		{F084E901-4464-411A-9291-371A63C4AA95}.Release|x86.ActiveCfg = Release|Win32
+		{F084E901-4464-411A-9291-371A63C4AA95}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DEECECCC-4575-4EF1-9891-F9580C4AD9FE}
+	EndGlobalSection
+EndGlobal
