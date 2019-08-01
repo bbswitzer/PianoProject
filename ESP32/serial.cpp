@@ -23,6 +23,8 @@ void checkForSerial()
 		{
 			uint8_t byte1 = Serial.read(); //only declare these if the first byte is a header
 			uint8_t byte2 = Serial.read(); //otherwise the program will keep looping looking for one
+			if(DEBUG_MODE) Serial.print("Recieved serial header: "); 
+			if(DEBUG_MODE) Serial.println(header);
 			switch(header)
 			{
 			case NOTE_HEADER:
