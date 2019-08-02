@@ -228,7 +228,7 @@ void Note::calculateVolume(uint8_t& velocity)
 		if(velocity > 127)
 			velocity = 127;
 		else if(velocity < 1)
-			velocity = 1;
+			velocity = 0;
 	}
 }
 
