@@ -29,7 +29,7 @@ void checkForSerial()
 			{
 			case NOTE_HEADER:
 				if(byte1 >= 0 && byte1 <= 87 &&
-					byte2 >= Setting::minNoteVelocity && byte2 <= 127)
+					(byte2 >= Setting::minNoteVelocity || byte2 == 0) && byte2 <= 127)
 					notes[byte1].prepareToSchedule(byte2);
 				break;
 			case SUSTAIN_HEADER:
