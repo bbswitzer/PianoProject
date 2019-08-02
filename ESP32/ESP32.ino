@@ -12,7 +12,7 @@
 #include "bluetooth.h"
 #include "main.h"
 #pragma GCC diagnostic pop
-const bool DEBUG_MODE = false;
+const bool DEBUG_MODE = true;
 
 void resetAll()
 {
