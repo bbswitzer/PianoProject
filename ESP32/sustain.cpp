@@ -90,12 +90,12 @@ void Sustain::scheduleSustain(bool state)
 
 	if(state)
 	{
-		instances++;
 		if(msAndDelay - sustainOnMs >= schedule[OFF].back()) //if sustain can be scheduled with current scheduling
 		{
 			schedule[ACTIVATION].push_back(msAndDelay - sustainOnMs);
 			schedule[ON].        push_back(msAndDelay);
 			timeSinceActivation = ms;
+			instances++;
 		} else if(msAndDelay - sustainOffMs - sustainOnMs >= schedule[ON].back()) //if current scheduling can be modified to still schedule the sustain
 		{
 			schedule[ON].        push_back(msAndDelay - sustainOnMs - sustainOffMs);
@@ -105,10 +105,11 @@ void Sustain::scheduleSustain(bool state)
 			schedule[ACTIVATION].push_back(msAndDelay - sustainOnMs);
 			schedule[ON].        push_back(msAndDelay);
 			timeSinceActivation = ms;
+			instances++;
 		}
 	} else if(instances > 0) //if sustain off command and sustain is not already off
 	{
-		instances == 0;
+		instances = 0;
 		if(msAndDelay - sustainOffMs >= schedule[ON].back()) //if sustain can be ideally deactivated
 		{
 			schedule[DEACTIVATION].push_back(msAndDelay - sustainOffMs);

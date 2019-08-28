@@ -51,7 +51,7 @@ void decodeBluetooth(int lengthM, uint8_t* message)
 		} else if(message[index] == CONTROL_CHANGE_BYTE && message[index + 1] == SUSTAIN_DATA_BYTE)
 		{
 			uint8_t sustainVelocityIndex = index + 2;
-			//sustain.prepareToSchedule(message[sustainVelocityIndex]);
+			sustain.prepareToSchedule(message[sustainVelocityIndex]);
 		}
 	}
 
