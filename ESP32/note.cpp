@@ -166,7 +166,7 @@ void Note::scheduleNote(uint8_t velocity)
 				schedule[ACTIVATION].  push_back(msAndDelay - velocityMs);
 				schedule[ON].          push_back(msAndDelay);
 				schedule[VELOCITY].    push_back(velocity);
-			} else if(msAndDelay - fastDeactivateMs - velocityMs - startupMs >= schedule[ACTIVATION].back() && schedule[ACTIVATION].back() > 0) //if current scheduling can be modified with fast deactivation to still schedule the new note
+			} else if(msAndDelay - fastDeactivateMs - velocityMs - startupMs - 35 >= schedule[ACTIVATION].back() && schedule[ACTIVATION].back() > 0) //if current scheduling can be modified with fast deactivation to still schedule the new note
 			{
 				schedule[ON].          push_back(msAndDelay - velocityMs - startupMs - fastDeactivateMs);
 				schedule[ON].          erase(----schedule[ON].end());
@@ -190,7 +190,7 @@ void Note::scheduleNote(uint8_t velocity)
 			timeSinceActivation == 0;
 			updateInstance(false);
 
-			if(msAndDelay - fastDeactivateMs >= schedule[ACTIVATION].back() && msAndDelay - fastDeactivateMs <= schedule[ON].back() && schedule[ACTIVATION].back() > 0) //if it's efficient to use fast deactivation
+			if(msAndDelay - fastDeactivateMs - 35 >= schedule[ACTIVATION].back() && msAndDelay - fastDeactivateMs - 35 <= schedule[ON].back() && schedule[ACTIVATION].back() > 0) //if it's efficient to use fast deactivation
 			{
 				schedule[ON].          push_back(msAndDelay - fastDeactivateMs);
 				schedule[ON].          erase(----schedule[ON].end());
@@ -205,7 +205,7 @@ void Note::scheduleNote(uint8_t velocity)
 				if(schedule[ACTIVATION].back() > 0)
 				{
 					//immediately deactivate the key as soon as it makes sound
-					schedule[ON].          push_back(schedule[ACTIVATION].back());
+					schedule[ON].          push_back(schedule[ACTIVATION].back() + 35);
 					schedule[ON].          erase(----schedule[ON].end());
 					schedule[DEACTIVATION].push_back(schedule[ACTIVATION].back());
 					schedule[OFF].         push_back(schedule[ACTIVATION].back() + fastDeactivateMs);
