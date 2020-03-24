@@ -55,9 +55,7 @@ void sendMidiToProMicro(byte note, byte velocity)
 	byte compatibleNote = (note * -1) + 87;
 	byte message[3] ={ NOTE_HEADER, compatibleNote, velocity };
 	//note that velocity is conformed on Pro Micro
-	Serial.write(NOTE_HEADER);
-	Serial.write(compatibleNote);
-	Serial.write(velocity);
+	Serial.write(message, 3);
 	//Serial.write(END_HEADER);
 }
 
