@@ -56,8 +56,6 @@ void setup()
 	delay(500); //give pro micro time to inititalize before giving power to shift registers
 	pinMode(SHIFT_REGISTER_POWER_PIN, OUTPUT);
 	digitalWrite(SHIFT_REGISTER_POWER_PIN, HIGH);
-
-	std::vector<unsigned long> testy[6];
 }
 
 void loop()
