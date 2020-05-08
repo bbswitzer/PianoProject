@@ -1,4 +1,4 @@
-//Latchpin: Pin 10 goes to second register input
+//Latchpin: Pin 18 (A0) goes to second register input
 //Datapin:  Pin 16 goes to first register input
 //Clockpin: Pin 15 goes to third register input
 const int ShiftPWM_latchPin=18; //values assigned before includes
