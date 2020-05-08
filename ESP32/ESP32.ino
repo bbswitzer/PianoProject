@@ -52,10 +52,6 @@ void setup()
 	//create sustain PWM output. this can't be done by the Pro Micro because the shift registers are filled up
 	ledcSetup(0, 100, 8);
 	ledcAttachPin(SUSTAIN_PIN, 0);
-
-	delay(500); //give pro micro time to inititalize before giving power to shift registers
-	pinMode(SHIFT_REGISTER_POWER_PIN, OUTPUT);
-	digitalWrite(SHIFT_REGISTER_POWER_PIN, HIGH);
 }
 
 void loop()
