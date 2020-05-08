@@ -42,7 +42,6 @@ void flashLED()
 
 void setup()
 {
-	const int SHIFT_REGISTER_POWER_PIN = 12;
 	const int SUSTAIN_PIN = 13;
 
 	pinMode(LED_BUILTIN, OUTPUT);
