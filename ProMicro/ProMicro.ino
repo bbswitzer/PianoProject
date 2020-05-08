@@ -14,10 +14,8 @@ void setup()
 	Serial1.begin(38400);
 
 	pinMode(19, OUTPUT);
-	pinMode(20, OUTPUT);
 	pinMode(LED_BUILTIN, OUTPUT);
 	digitalWrite(19, HIGH);
-	digitalWrite(20, HIGH);
 
 	if(DEBUG_MODE)
 		testRegisters();
