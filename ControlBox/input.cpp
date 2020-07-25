@@ -113,7 +113,7 @@ void handleInput(int inputPin)
 		lastPressedOverall = ms;
 		currentMenu++;
 		if(currentMenu >= NUM_OF_MENUS)
-			currentMenu == 0;
+			currentMenu = 0;
 		menuState = MenuStates::SETTINGS;
 		updateDisplay();
 		break;
