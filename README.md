@@ -33,3 +33,4 @@ Required Arduino Libraries:
   - ShiftPWM (Pro Micro)
   - MIDIUSB  (Pro Micro & Control Box)
   - LiquidCrystal_I2C (Control Box)
+  - Arduino Core for ESP32 (https://github.com/espressif/arduino-esp32)
