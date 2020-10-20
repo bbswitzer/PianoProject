@@ -25,7 +25,7 @@ uint8_t rawAdvData[] =
 		0xE8, 0xED, 0x5A, 0x0E, 0xB8, 0x03,
 };
 
-uint8_t rawScanRspData[] ={ 0x0c, 0x09, 'P','l','a','y','e','r',' ','P','i','a','n','o' };
+uint8_t rawScanRspData[] ={ 0x0b, 0x09, 'P','l','a','y','e','r','P','i','a','n','o' };
 
 
 esp_bt_uuid_t characteristicUUID;
