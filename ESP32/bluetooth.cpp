@@ -72,7 +72,7 @@ static void gattsEventHandler(esp_gatts_cb_event_t event, esp_gatt_if_t gattsInt
 		for(int i=0; i < 16; i++)
 			serviceID.id.uuid.uuid.uuid128[i] = serviceUUID128[i];
 
-		esp_ble_gap_set_device_name("Player Piano");
+		esp_ble_gap_set_device_name("PlayerPiano");
 		esp_ble_gap_config_adv_data_raw(rawAdvData, sizeof(rawAdvData));
 		esp_ble_gap_config_scan_rsp_data_raw(rawScanRspData, sizeof(rawScanRspData));
 		esp_ble_gatts_create_service(gattsInterface, &serviceID, 4);
