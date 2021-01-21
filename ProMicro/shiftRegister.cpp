@@ -24,15 +24,15 @@ void intitializeRegisters()
 void activateNote(uint8_t note, uint8_t velocity)
 {
 	if(velocity > 0)
-		conformVelocity(velocity);
+		conformVelocity(&velocity);
 	ShiftPWM.SetOne(note, velocity);
 }
 
-void conformVelocity(uint8_t& velocity)
+void conformVelocity(uint8_t* velocity)
 {
 	//conforms velocity from 0-127 to 0-255 while taking into account the minimum possible solenoid PWM
 	const double MIN_PWM = round(MAX_PWM * pwmPercent / static_cast<double>(100));
-	velocity = round(velocity * (MAX_PWM - MIN_PWM) / static_cast<double>(127) + MIN_PWM);
+	*velocity = round(velocity * (MAX_PWM - MIN_PWM) / static_cast<double>(127) + MIN_PWM);
 }
 
 void testRegisters()
