@@ -8,7 +8,7 @@ const bool ShiftPWM_balanceLoad = false;
 #include <CShiftPWM.h>
 #include "shiftRegister.h"
 
-void conformVelocity(uint8_t& velocity);
+void conformVelocity(uint8_t* velocity);
 
 extern uint8_t pwmPercent = 45;
 const char     MAX_PWM = 235;
