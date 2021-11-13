@@ -39,7 +39,7 @@ void updateSetting(SettingID::SettingID setting, int value)
 	switch(setting)
 	{
 	case HANDLE_NOTES:
-		scheduleNotes = value;
+		handleNotes = value;
 		break;
 	case SCHEDULE_NOTES:
 		scheduleNotes = value;
