@@ -21,7 +21,8 @@ enum class SettingID //same order as menus
 	SUSTAIN_TIMEOUT,
 	AUTO_RESET_MINS,
 	MAX_LEFT_KEYS,
-	MAX_RIGHT_KEYS
+	MAX_RIGHT_KEYS,
+	WIFI_AP
 };
 
 void changeSetting(int changeBy);

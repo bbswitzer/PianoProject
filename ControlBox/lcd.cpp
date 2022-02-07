@@ -1,5 +1,5 @@
-#include <LiquidCrystal_I2C.h>
 #include <EEPROM.h>
+#include "LiquidCrystal_I2C.h"
 #include "lcd.h"
 #include "input.h"
 #include "setting.h"
@@ -23,7 +23,8 @@ const String MENU_NAMES[] ={
   "Sustain Timeout",
   "Auto Reset Mins",
   "Max Left Keys",
-  "Max Right Keys"
+  "Max Right Keys",
+	"Force wifi AP"
 };
 
 MenuStates       menuState = MenuStates::WELCOME;
@@ -35,17 +36,23 @@ unsigned long    exitScreen;
 
 void initializeLCD()
 {
+  uint8_t note[8]  = {0x2, 0x3, 0x2, 0xe, 0x1e, 0xc, 0x0};
 	lcd.begin();
 	lcd.backlight();
+  lcd.createChar(1, note);
 }
 
 void printHomeScreen()
 {
 	lcd.clear();
-	lcd.setCursor(0, 0);
-	lcd.print("Welcome to");
-	lcd.setCursor(0, 1);
+	lcd.setCursor(1, 0);
+	lcd.print("Welcome to vik");
+	lcd.setCursor(2, 1);
 	lcd.print("Player Piano");
+  lcd.setCursor(0, 1);
+  lcd.write(1);
+  lcd.setCursor(15, 1);
+  lcd.write(1);
 }
 
 void updateDisplay()
@@ -61,7 +68,8 @@ void updateDisplay()
 		lcd.setCursor(0, 1);
 		//see if the current menu is true or false or just a number
 		if(currentMenu != static_cast<int>(SettingID::SCHEDULE_NOTES) &&
-		   currentMenu != static_cast<int>(SettingID::HANDLE_NOTES)) //if current menu is not a bool menu
+		   currentMenu != static_cast<int>(SettingID::HANDLE_NOTES) &&
+			 currentMenu != static_cast<int>(SettingID::WIFI_AP)) // if current menu is not a bool menu
 			lcd.print(EEPROM.read(currentMenu));
 		else
 		{

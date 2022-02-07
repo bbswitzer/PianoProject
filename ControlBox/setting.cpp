@@ -17,8 +17,8 @@ void sendAllSettings()
 {
 	for(int index = 0; index < NUM_OF_MENUS; index++)
 	{
-		sendSerialToMain(SerialConstants::SETTING_HEADER, index, EEPROM.read(index));
+		sendSerialToMain(SETTING_HEADER, index, EEPROM.read(index));
 		delay(50);
 	}
-	sendSerialToMain(SerialConstants::VOLUME_HEADER, lastAnalog, lastAnalog);
+	sendSerialToMain(VOLUME_HEADER, lastAnalog, lastAnalog);
 }

@@ -3,14 +3,11 @@
 
 #include <Arduino.h>
 
-namespace SerialConstants
-{
-	extern const uint8_t NOTE_HEADER;
-	extern const uint8_t SUSTAIN_HEADER;
-	extern const uint8_t SETTING_HEADER;
-	extern const uint8_t RESET_HEADER;
-	extern const uint8_t VOLUME_HEADER;
-}
+#define NOTE_HEADER    201
+#define SUSTAIN_HEADER 202
+#define SETTING_HEADER 203
+#define RESET_HEADER   204
+#define VOLUME_HEADER  205
 
 void sendSerialToMain(uint8_t header, uint8_t setting, uint8_t value);
 void sendAllSettings();

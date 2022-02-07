@@ -2,40 +2,34 @@
 #include "midi.h"
 #include "serial.h"
 
-void decodeMidi(uint8_t header, uint8_t byte1, uint8_t byte2, uint8_t byte3);
+void decodeMidi(uint8_t header, uint8_t channel, uint8_t data1, uint8_t data2);
 
-void checkForMidiUSB()
-{
-	midiEventPacket_t rx; //midi data struct from midiUSB libray 
-	do
-	{
+void checkForMidiUSB() {
+	midiEventPacket_t rx; //midi data struct from midiUSB library 
+	do {
 		rx = MidiUSB.read(); //get queued info from USB
-		if(rx.header != 0)
-		{
+		if (rx.header != 0) {
 			decodeMidi(rx.header, rx.byte1, rx.byte2, rx.byte3);
 		}
-	} while(rx.header != 0);
+	} while (rx.header != 0);
 }
 
-void decodeMidi(uint8_t header, uint8_t byte1, uint8_t byte2, uint8_t byte3)
-{
-	const uint8_t NOTE_ON_HEADER        = 9;
-	const uint8_t NOTE_OFF_HEADER       = 8;
-	const uint8_t CONTROL_CHANGE_HEADER = 8;
-	const uint8_t SUSTAIN_STATUS_BYTE   = 176;
-	const uint8_t MIN_NOTE_PITCH        = 21;
+void decodeMidi(uint8_t header, uint8_t channel, uint8_t data1, uint8_t data2) {
 	//note that ESP32 does bounds checking
-	switch(header)
-	{
-	case NOTE_ON_HEADER:
-		sendSerialToMain(SerialConstants::NOTE_HEADER, byte2 - MIN_NOTE_PITCH, byte3);
-		break;
-	case NOTE_OFF_HEADER:
-		sendSerialToMain(SerialConstants::NOTE_HEADER, byte2 - MIN_NOTE_PITCH, 0);
-		break;
-	case SUSTAIN_STATUS_BYTE:
-		if(byte1 == SUSTAIN_STATUS_BYTE)
-			sendSerialToMain(SerialConstants::SUSTAIN_HEADER, byte3, byte3);
-		break;
+	switch (header) {
+		case NOTE_ON_HEADER:
+			sendSerialToMain(NOTE_HEADER, data1 - MIN_NOTE_PITCH, data2);
+			break;
+
+		case NOTE_OFF_HEADER:
+			sendSerialToMain(NOTE_HEADER, data1 - MIN_NOTE_PITCH, 0);
+			break;
+
+		case CONTROL_CHANGE_HEADER:
+			if (data1 == SUSTAIN_STATUS_BYTE)
+				sendSerialToMain(SUSTAIN_HEADER, data2, 127);
+			if (data1 == 120 || data1 == 123) // reset notes(panic) signal
+				sendSerialToMain(RESET_HEADER, 127, 127);
+			break;
 	}
 }
