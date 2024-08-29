@@ -1,10 +1,7 @@
 [![](https://dcbadge.limes.pink/api/server/https://discord.com/invite/reenxNyht5?style=flat)](https://discord.gg/https://discord.com/invite/reenxNyht5)
 
-<div  style="text-align: center">
+[![](https://img.youtube.com/vi/S7Bd992k368/0.jpg)](https://www.youtube.com/watch?v=S7Bd992k368)
 
-<iframe  width="560"  height="315"  src="https://www.youtube.com/embed/S7Bd992k368?si=Cdnbv742X09ewYGh"  title="YouTube video player"  frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  referrerpolicy="strict-origin-when-cross-origin"  allowfullscreen></iframe>
-
-</div>
 
 # Introduction
 
