@@ -170,6 +170,10 @@ Each component in the system has its own rated voltage:
 
 The challenge is to supply the appropriate amount of power to each of these components from a 120V AC wall socket. The solution is to divide the main power supply into two voltages: 3.3V DC for the microcontrollers and peripheral components and 24V DC for the solenoids. The microcontrollers and their components are powered by a MB102 breadboard power supply, while the solenoids are powered by two 24V 20A power supplies that can be found on AliExpress. The breadboard power supply is installed with the main electronics inside the piano, and its live and ground connections are connected to the control box microcontroller via a long wire.
 
+Below is a wiring diagram of the key solenoids, the MIDI Processor, and the Solenoid Actuator. The Control Box and damper pedal solenoids are omitted from the diagram, and the two 24V power supplies are abstracted into a single 40A power rail:
+
+<img src='./assets/wiring-diagram.png' style="display: block; margin: 0 auto; max-width: 80%;">
+
 ## Software
 
 ### MIDI Messages and Inter-Microcontroller Communication
