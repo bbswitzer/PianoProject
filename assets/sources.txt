@@ -1,0 +1,2 @@
+hammer-action.png: https://www.scirp.org/journal/paperinformation?paperid=104674
+midi-format.png: https://www.hangar42.nl/wp-content/uploads/2017/10/BLE-MIDI-spec.pdf
